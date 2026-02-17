@@ -10,7 +10,7 @@ Ein 16x2 LCD Display zeigt den aktuellen Winkel sowie ein Menü zum Speichern vo
 - Raspberry Pi  
 - 16x2 LCD Display (HD44780 kompatibel)
 - Rotary Encoder (CLK + DT)
-- 2 Taster
+- 2 Taster (1 Taster und Interner Rotary Encoder)
 - Servo Motor (z.B. SG90)
 - Externe 5V Stromversorgung für Servo (empfohlen)
 
@@ -24,10 +24,11 @@ Ein 16x2 LCD Display zeigt den aktuellen Winkel sowie ein Menü zum Speichern vo
 
 Installation:
 
+<pre> ```
 sudo apt update
 sudo apt install python3-gpiozero
 pip3 install RPLCD
-
+``` </pre>
 ---
 
 ## 🔌 Pinbelegung
@@ -102,7 +103,7 @@ Menümodus:
 
 ## ▶️ Programm starten
 
-python3 dein_script.py
+python3 main.py
 
 ---
 
@@ -132,10 +133,3 @@ GPIO und PWM werden automatisch sauber beendet.
 
 ---
 
-## 🚀 Erweiterungsmöglichkeiten
-
-- Mehr Speicherpositionen
-- EEPROM Speicherung
-- OLED Display
-- Sanfte Servo-Bewegung (Interpolation)
-- Webinterface zur Steuerung
