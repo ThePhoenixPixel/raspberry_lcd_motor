@@ -24,11 +24,11 @@ Ein 16x2 LCD Display zeigt den aktuellen Winkel sowie ein Menü zum Speichern vo
 
 Installation:
 
-<pre> ```
+<pre>
 sudo apt update
 sudo apt install python3-gpiozero
 pip3 install RPLCD
-``` </pre>
+</pre>
 ---
 
 ## 🔌 Pinbelegung
@@ -102,9 +102,9 @@ Menümodus:
 ---
 
 ## ▶️ Programm starten
-
+<pre>
 python3 main.py
-
+</pre>
 ---
 
 ## 🛑 Beenden
