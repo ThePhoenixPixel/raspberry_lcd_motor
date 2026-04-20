@@ -24,7 +24,8 @@ lcd = CharLCD(
 # --------------------
 # Rotary Encoder (BCM!)
 # --------------------
-zahl = 0
+pos1 = 0
+pos2 = 0
 encoder = RotaryEncoder(a=17, b=27, max_steps=0)
 
 # --------------------
@@ -45,7 +46,7 @@ servo.start(0)
 # Speicher
 # --------------------
 pos1 = 0
-pos2 = 90
+pos2 = 0
 menu_active = False
 menu_selection = 0   # 0 = Pos1, 1 = Pos2
 current_toggle = 0   # aktuelle Zielposition
@@ -66,7 +67,11 @@ def update_lcd():
         lcd.cursor_pos = (0, 0)
         lcd.write_string("Servo Winkel:")
         lcd.cursor_pos = (1, 0)
-        lcd.write_string(f"{zahl} Grad")
+
+        if menu_selection == 0:
+            lcd.write_string(f"{pos1} Grad")
+        else:
+            lcd.write_string(f"{pos2} Grad")
     else:
         lcd.cursor_pos = (0, 0)
         if menu_selection == 0:
@@ -84,19 +89,27 @@ def update_lcd():
 # Encoder Steuerung
 # --------------------
 def rechts():
-    global zahl, menu_selection
+    global pos1, pos2, menu_selection
     if not menu_active:
-        if zahl < 180:
-            zahl += 1
+        if menu_selection == 0:    
+            if pos1 < 180:
+                pos1 += 1
+        else:
+            if pos2 < 180:
+                pos2 += 1
     else:
         menu_selection = (menu_selection + 1) % 2
     update_lcd()
 
 def links():
-    global zahl, menu_selection
+    global pos1, pos2, menu_selection
     if not menu_active:
-        if zahl > 0:
-            zahl -= 1
+        if menu_selection == 0:
+            if pos1 > 0:
+                pos1 -= 1
+        else:
+            if pos2 < 180:
+                pos2 += 1
     else:
         menu_selection = (menu_selection - 1) % 2
     update_lcd()
@@ -122,10 +135,6 @@ try:
             if not menu_active:
                 menu_active = True
             else:
-                if menu_selection == 0:
-                    pos1 = zahl
-                else:
-                    pos2 = zahl
                 menu_active = False
 
             update_lcd()
