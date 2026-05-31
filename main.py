@@ -108,8 +108,8 @@ def links():
             if pos1 > 0:
                 pos1 -= 1
         else:
-            if pos2 < 180:
-                pos2 += 1
+            if pos2 > 0:
+                pos2 -= 1
     else:
         menu_selection = (menu_selection - 1) % 2
     update_lcd()
